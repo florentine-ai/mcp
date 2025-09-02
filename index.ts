@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
-import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
-import {Command} from 'commander';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Command } from 'commander';
 import {
   AskAutoInputSchema,
   AskManualInputSchema,
@@ -22,9 +22,9 @@ import {
   type TAskInput,
   type TAskResponse
 } from './types.js';
-import {DebugLogger} from './logger.js';
-import {ZodError} from 'zod';
-import {handleZodError, unknownError} from './handleErrors.js';
+import { DebugLogger } from './logger.js';
+import { ZodError } from 'zod';
+import { handleZodError, unknownError } from './handleErrors.js';
 
 const program = new Command();
 program
@@ -108,7 +108,7 @@ const ask = async (
 ): Promise<TAskResponse | TErrorResponse> => {
   // Validiere Input mit Zod
   const validatedInput = AskManualInputSchema.parse(input);
-  const {question, sessionId, returnTypes, requiredInputs} = validatedInput;
+  const { question, sessionId, returnTypes, requiredInputs } = validatedInput;
 
   try {
     // Create the request body
@@ -117,22 +117,22 @@ const ask = async (
     const requestBody = FlorentineRequestBodySchema.parse({
       question,
       config: {
-        ...(llmService ? {llmService} : {}),
-        ...(llmKey ? {llmKey} : {}),
+        ...(llmService ? { llmService } : {}),
+        ...(llmKey ? { llmKey } : {}),
         ...(sessionId
-          ? {sessionId}
+          ? { sessionId }
           : envSessionId
-          ? {sessionId: envSessionId}
+          ? { sessionId: envSessionId }
           : {}),
         ...(envReturnTypes.length || returnTypes
-          ? {returnTypes: Object.assign(envReturnTypes, returnTypes)}
-          : {returnTypes: ['answer']}),
+          ? { returnTypes: Object.assign(envReturnTypes, returnTypes) }
+          : { returnTypes: ['answer'] }),
         ...(envRequiredInputs.length || requiredInputs
-          ? {requiredInputs: Object.assign(envRequiredInputs, requiredInputs)}
+          ? { requiredInputs: Object.assign(envRequiredInputs, requiredInputs) }
           : {})
       }
     });
-    Logger?.log('Request Body:', requestBody);
+    Logger?.error('Request Body:', requestBody);
 
     const response: Response = await fetch(`${FLORENTINE_BASE_URL}/ask`, {
       method: 'POST',
@@ -142,13 +142,13 @@ const ask = async (
 
     if (!response.ok) {
       const errorData = await response.json();
-      Logger?.log('Error Response:', errorData);
+      Logger?.error('Error Response:', errorData);
       // Validate Error Response with Zod
       return ErrorResponseSchema.parse(errorData);
     }
 
     const rawResult = await response.json();
-    Logger?.log('Response Result:', rawResult);
+    Logger?.error('Response Result:', rawResult);
     // Validate Response with Zod
     return AskResponseSchema.parse(rawResult);
   } catch (err: unknown) {
@@ -170,7 +170,7 @@ const listCollections = async (): Promise<
     );
     if (!response.ok) {
       const errorData = await response.json();
-      Logger?.log('Error Response:', errorData);
+      Logger?.error('Error Response:', errorData);
       // Validate Error Response with Zod
       return ErrorResponseSchema.parse(errorData);
     }
@@ -192,10 +192,13 @@ const serverConfig = McpServerConfigSchema.parse({
 
 const server = new McpServer(serverConfig);
 
-server.tool(
+server.registerTool(
   'florentine_list_collections',
-  `Used internally to fetch metadata (name, summary, structure) of database collections **only when needed** to help answer a question via the "ask" tool. Should not be used alone.`,
-  {},
+  {
+    title: 'Florentine List Collections',
+    description: `Used internally to fetch metadata (name, summary, structure) of database collections **only when needed** to help answer a question via the "ask" tool. Should not be used alone.`,
+    inputSchema: {}
+  },
   async () => {
     try {
       const response: TListCollectionsResponse | TErrorResponse =
@@ -212,9 +215,9 @@ server.tool(
         isError: 'error' in response
       });
     } catch (err: unknown) {
-      Logger?.log('List collections response parsing error:', err);
+      Logger?.error('List collections response parsing error:', err);
       return ToolResponseSchema.parse({
-        content: [{type: 'text', text: JSON.stringify(unknownError)}],
+        content: [{ type: 'text', text: JSON.stringify(unknownError) }],
         isError: true
       });
     }
@@ -222,21 +225,24 @@ server.tool(
 );
 
 if (serverMode === MODES.STATIC) {
-  server.tool(
+  server.registerTool(
     'florentine_ask',
-    askDescription,
-    AskAutoInputSchema.shape,
-    async ({question}) => {
+    {
+      title: 'Florentine Ask',
+      description: askDescription,
+      inputSchema: AskAutoInputSchema.shape
+    },
+    async ({ question }) => {
       try {
-        const response: TAskResponse | TErrorResponse = await ask({question});
+        const response: TAskResponse | TErrorResponse = await ask({ question });
         return ToolResponseSchema.parse({
-          content: [{type: 'text', text: JSON.stringify(response)}],
+          content: [{ type: 'text', text: JSON.stringify(response) }],
           isError: 'error' in response
         });
       } catch (err: unknown) {
-        Logger?.log('Ask response parsing error:', err);
+        Logger?.error('Ask response parsing error:', err);
         return ToolResponseSchema.parse({
-          content: [{type: 'text', text: JSON.stringify(unknownError)}],
+          content: [{ type: 'text', text: JSON.stringify(unknownError) }],
           isError: true
         });
       }
@@ -245,13 +251,16 @@ if (serverMode === MODES.STATIC) {
 }
 
 if (serverMode === MODES.DYNAMIC) {
-  server.tool(
+  server.registerTool(
     'florentine_ask',
-    `${askDescription}
+    {
+      title: 'Florentine Ask',
+      description: `${askDescription}
     IMPORTANT: Only provide the 'question' parameter. All other parameters (sessionId, requiredInputs, returnTypes) are automatically configured
     by the client and should NOT be provided.`,
-    AskManualInputSchema.shape,
-    async ({question, sessionId, requiredInputs, returnTypes}) => {
+      inputSchema: AskManualInputSchema.shape
+    },
+    async ({ question, sessionId, requiredInputs, returnTypes }) => {
       try {
         const response: TAskResponse | TErrorResponse = await ask({
           question,
@@ -260,13 +269,13 @@ if (serverMode === MODES.DYNAMIC) {
           returnTypes
         });
         return ToolResponseSchema.parse({
-          content: [{type: 'text', text: JSON.stringify(response)}],
+          content: [{ type: 'text', text: JSON.stringify(response) }],
           isError: 'error' in response
         });
       } catch (err: unknown) {
-        Logger?.log('err', err);
+        Logger?.error('err', err);
         return ToolResponseSchema.parse({
-          content: [{type: 'text', text: JSON.stringify(unknownError)}],
+          content: [{ type: 'text', text: JSON.stringify(unknownError) }],
           isError: true
         });
       }
@@ -276,3 +285,4 @@ if (serverMode === MODES.DYNAMIC) {
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
+Logger?.error('Florentine MCP server connected and ready');

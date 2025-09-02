@@ -1,5 +1,5 @@
-import {ZodError} from 'zod';
-import {TErrorResponse} from './types';
+import { ZodError } from 'zod';
+import { TErrorResponse } from './types';
 
 const handleZodError = (error: ZodError): TErrorResponse => {
   const issue = error.issues[0];
@@ -19,7 +19,7 @@ const handleZodError = (error: ZodError): TErrorResponse => {
   } else if (
     issue.path.includes('florentineToken') &&
     issue.code === 'invalid_type' &&
-    (issue as any).received === 'undefined'
+    issue.received === 'undefined'
   ) {
     errorCode = 'NO_TOKEN';
     message =
@@ -28,14 +28,14 @@ const handleZodError = (error: ZodError): TErrorResponse => {
     const field = issue.path.join('.');
     switch (issue.code) {
       case 'invalid_type':
-        if ((issue as any).received === 'undefined') {
+        if (issue.received === 'undefined') {
           message = `"${field}" is required, but missing.`;
         } else {
-          message = `"${field}" must be a ${(issue as any).expected}.`;
+          message = `"${field}" must be a ${issue.expected}.`;
         }
         break;
 
-      case 'invalid_value':
+      case 'invalid_enum_value':
         message = `The value for "${field}" is not valid.`;
         break;
 
@@ -77,4 +77,4 @@ const unknownError = {
   }
 } as TErrorResponse;
 
-export {handleZodError, unknownError};
+export { handleZodError, unknownError };
