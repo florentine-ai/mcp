@@ -1,0 +1,43 @@
+{
+  "name": "@florentine-ai/mcp",
+  "version": "0.1.0",
+  "homepage": "https://florentine.ai",
+  "description": "MCP server for Florentine.ai - Natural language to MongoDB aggregations",
+  "private": true,
+  "type": "module",
+  "bin": "./dist/index.js",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mongodb",
+    "aggregation",
+    "natural-language",
+    "ai",
+    "llm",
+    "database",
+    "query",
+    "claude",
+    "florentine"
+  ],
+  "author": "Jens Lübberstedt <jens@florentine.ai>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "format": "npx prettier --write .",
+    "inspector": "npx @modelcontextprotocol/inspector dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.17.4",
+    "commander": "^14.0.0",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  }
+}
