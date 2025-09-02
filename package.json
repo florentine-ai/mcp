@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "homepage": "https://florentine.ai",
   "description": "MCP server for Florentine.ai - Natural language to MongoDB aggregations",
-  "private": true,
   "type": "module",
   "bin": "./dist/index.js",
   "keywords": [
@@ -24,6 +23,13 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florentine-ai/mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/florentine-ai/mcp/issues"
+  },
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "prepare": "npm run build",
