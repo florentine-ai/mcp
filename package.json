@@ -30,6 +30,7 @@
   "bugs": {
     "url": "https://github.com/florentine-ai/mcp/issues"
   },
+  "mcpName": "io.github.florentine-ai/mcp",
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "prepare": "npm run build",
