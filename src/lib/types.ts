@@ -131,11 +131,28 @@ export const TLLMServiceSchema = z.enum([
 ]);
 
 const BaseEnvConfigSchema = z.object({
-  llmService: TLLMServiceSchema.optional(),
-  llmKey: z.string().optional(),
-  sessionId: z.string().optional(),
-  requiredInputs: z.array(TRequiredInputSchema).optional(),
-  returnTypes: z.array(z.string())
+  llmService: TLLMServiceSchema.optional().describe(
+    'The LLM service to use, must be one of: "openai", "anthropic", "google", or "deepseek"'
+  ),
+  llmKey: z
+    .string()
+    .optional()
+    .describe('Your API key for the chosen LLM service'),
+  sessionId: z
+    .string()
+    .optional()
+    .describe('An optional session ID for server side chat history'),
+  requiredInputs: z
+    .array(TRequiredInputSchema)
+    .optional()
+    .describe(
+      'An array of required input objects specifying key paths and their expected values'
+    ),
+  returnTypes: z
+    .array(z.string())
+    .describe(
+      'An array specifying which response types to return, must be any combination of: "aggregation", "result", "answer"'
+    )
 });
 
 const validateLlmServiceAndKey = (data: any) => {
@@ -225,9 +242,19 @@ export const ErrorResponseSchema = z.object({
 });
 
 export const ArgsConfigSchema = z.object({
-  mode: z.enum(['static', 'dynamic']),
-  debug: z.enum(['true', 'false']).optional(),
-  logpath: z.string().optional()
+  mode: z
+    .enum(['static', 'dynamic'])
+    .describe(
+      'The mode to run the MCP server in (must be "static" or "dynamic")'
+    ),
+  debug: z
+    .enum(['true', 'false'])
+    .optional()
+    .describe('Enable debug mode for logging'),
+  logpath: z
+    .string()
+    .optional()
+    .describe('The absolute path to the debug log file')
 });
 
 export const EnvConfigSchema = BaseEnvConfigSchema.extend({
@@ -236,7 +263,11 @@ export const EnvConfigSchema = BaseEnvConfigSchema.extend({
 
 export const FlorentineConfigSchema = ArgsConfigSchema.merge(
   BaseEnvConfigSchema.extend({
-    florentineToken: z.string()
+    florentineToken: z
+      .string()
+      .describe(
+        'Your Florentine API key, get it from https://florentine.ai/settings'
+      )
   })
 ).refine(validateLlmServiceAndKey, llmValidationRefinement);
 
