@@ -614,6 +614,8 @@ You may parse the JSON in `text` and handle the different errors inside your cus
 
 | Error Name                  | errorCode                       | Meaning                                                            |
 | --------------------------- | ------------------------------- | ------------------------------------------------------------------ |
+| `FlorentineApiError`        | `MODE_MISSING`                  | You must provide `static` or `dynamic` as mode argument            |
+| `FlorentineApiError`        | `MODE_INVALID`                  | Mode is invalid (must be `static` or `dynamic`)                    |
 | `FlorentineApiError`        | `INVALID_TOKEN`                 | The Florentine API key is invalid                                  |
 | `FlorentineApiError`        | `LLM_KEY_WITHOUT_SERVICE`       | You must provide a `llmService` if `llmKey` is defined             |
 | `FlorentineApiError`        | `LLM_SERVICE_WITHOUT_KEY`       | You must provide a `llmKey` if `llmService` is defined             |
