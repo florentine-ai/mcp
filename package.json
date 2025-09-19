@@ -4,7 +4,9 @@
   "homepage": "https://florentine.ai",
   "description": "MCP server for Florentine.ai - Natural language to MongoDB aggregations",
   "type": "module",
-  "bin": "./dist/index.js",
+  "bin": {
+    "florentine": "./dist/index.js"
+  },
   "keywords": [
     "mcp",
     "model-context-protocol",
@@ -23,6 +25,7 @@
   "files": [
     "dist"
   ],
+  "module": "src/smithery.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/florentine-ai/mcp.git"
