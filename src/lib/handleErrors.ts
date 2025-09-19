@@ -1,5 +1,5 @@
 import { ZodError } from 'zod';
-import { TErrorResponse } from './types';
+import { TErrorResponse } from './types.js';
 
 const handleZodError = (error: ZodError): TErrorResponse => {
   const issue = error.issues[0];
@@ -7,7 +7,19 @@ const handleZodError = (error: ZodError): TErrorResponse => {
   // Determine a specific error code
   let errorCode = 'INVALID_INPUT';
   let message = '';
-  if (issue.path.includes('llmKey') && issue.message.includes('"llmService"')) {
+  if (
+    issue.path.includes('mode') &&
+    ['invalid_type', 'invalid_enum_value'].includes(issue.code)
+  ) {
+    errorCode = issue.code === 'invalid_type' ? 'MODE_MISSING' : 'MODE_INVALID';
+    message =
+      issue.code === 'invalid_type'
+        ? 'Missing mode argument. Use --mode <mode> to specify "static" or "dynamic".'
+        : 'Invalid mode argument. Please specify "static" or "dynamic" for --mode.';
+  } else if (
+    issue.path.includes('llmKey') &&
+    issue.message.includes('"llmService"')
+  ) {
     errorCode = 'LLM_KEY_WITHOUT_SERVICE';
     message = issue.message;
   } else if (

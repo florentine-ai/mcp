@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 // Base schema for required inputs
 const RequiredInputBase = z.object({
@@ -28,13 +28,13 @@ export const TRequiredInputSchema = z.union([
   RequiredInputWithoutCollections
 ]);
 
-export const TReturnTypesSchema = z.enum(["aggregation", "result", "answer"]);
+export const TReturnTypesSchema = z.enum(['aggregation', 'result', 'answer']);
 
 // Zod schemas for function parameters and return values
 export const AskManualInputSchema = z.object({
   question: z.string(),
   sessionId: z.string().optional(),
-  returnTypes: z.array(z.enum(["aggregation", "result", "answer"])).optional(),
+  returnTypes: z.array(z.enum(['aggregation', 'result', 'answer'])).optional(),
   requiredInputs: z.array(TRequiredInputSchema).optional()
 });
 
@@ -98,7 +98,7 @@ export const AskResponseSchema = z
     },
     {
       message:
-        "At least one option must be present: (confidence + database + collection + aggregation), result, or answer. Aggregation fields must all be present together."
+        'At least one option must be present: (confidence + database + collection + aggregation), result, or answer. Aggregation fields must all be present together.'
     }
   );
 
@@ -124,37 +124,41 @@ export const FullResponseSchema =
   );
 
 export const TLLMServiceSchema = z.enum([
-  "openai",
-  "deepseek",
-  "google",
-  "anthropic"
+  'openai',
+  'deepseek',
+  'google',
+  'anthropic'
 ]);
 
-export const FlorentineConfigSchema = z
-  .object({
-    llmService: TLLMServiceSchema.optional(),
-    llmKey: z.string().optional(),
-    sessionId: z.string().optional(),
-    requiredInputs: z.array(TRequiredInputSchema).optional(),
-    returnTypes: z.array(z.string())
-  })
-  .refine(
-    (data) => {
-      const hasLlmService = data.llmService !== undefined;
-      const hasLlmKey = data.llmKey !== undefined;
-      return (hasLlmService && hasLlmKey) || (!hasLlmService && !hasLlmKey);
-    },
-    {
-      message: "llmService and llmKey must both be present or both be absent"
-    }
-  );
+const BaseEnvConfigSchema = z.object({
+  llmService: TLLMServiceSchema.optional(),
+  llmKey: z.string().optional(),
+  sessionId: z.string().optional(),
+  requiredInputs: z.array(TRequiredInputSchema).optional(),
+  returnTypes: z.array(z.string())
+});
+
+const validateLlmServiceAndKey = (data: any) => {
+  const hasLlmService = data.llmService !== undefined;
+  const hasLlmKey = data.llmKey !== undefined;
+  return (hasLlmService && hasLlmKey) || (!hasLlmService && !hasLlmKey);
+};
+
+const llmValidationRefinement = {
+  message: 'llmService and llmKey must both be present or both be absent'
+};
+
+export const FlorentineRequestConfigSchema = BaseEnvConfigSchema.refine(
+  validateLlmServiceAndKey,
+  llmValidationRefinement
+);
 
 export const FlorentineRequestBodySchema = z.object({
   question: z.string(),
-  config: FlorentineConfigSchema
+  config: FlorentineRequestConfigSchema
 });
 
-export const TMongoInstanceTypeSchema = z.enum(["atlas", "self-deployed"]);
+export const TMongoInstanceTypeSchema = z.enum(['atlas', 'self-deployed']);
 
 export const ICollectionStructureDynamicSchema: z.ZodType<any> = z.lazy(() =>
   z.object({
@@ -189,8 +193,8 @@ export const ListCollectionsResponseSchema = z.object({
 });
 
 export const HeadersSchema = z.object({
-  "Content-Type": z.string(),
-  "florentine-token": z.string()
+  'Content-Type': z.string(),
+  'florentine-token': z.string()
 });
 
 // Zod schema for MCP server configuration
@@ -201,7 +205,7 @@ export const McpServerConfigSchema = z.object({
 
 // Zod schema for tool response content
 export const ToolContentSchema = z.object({
-  type: z.literal("text"),
+  type: z.literal('text'),
   text: z.string()
 });
 
@@ -220,6 +224,22 @@ export const ErrorResponseSchema = z.object({
   })
 });
 
+export const ArgsConfigSchema = z.object({
+  mode: z.enum(['static', 'dynamic']),
+  debug: z.enum(['true', 'false']).optional(),
+  logpath: z.string().optional()
+});
+
+export const EnvConfigSchema = BaseEnvConfigSchema.extend({
+  florentineToken: z.string()
+}).refine(validateLlmServiceAndKey, llmValidationRefinement);
+
+export const FlorentineConfigSchema = ArgsConfigSchema.merge(
+  BaseEnvConfigSchema.extend({
+    florentineToken: z.string()
+  })
+).refine(validateLlmServiceAndKey, llmValidationRefinement);
+
 // Type exports for better developer experience
 export type TApiResponse = z.infer<typeof AskResponseSchema>;
 export type TAggregationResponse = z.infer<typeof AggregationResponseSchema>;
@@ -230,7 +250,9 @@ export type TRequiredInput = z.infer<typeof TRequiredInputSchema>;
 export type TReturnTypes = z.infer<typeof TReturnTypesSchema>;
 export type TAskInput = z.infer<typeof AskManualInputSchema>;
 export type TAskResponse = z.infer<typeof AskResponseSchema>;
-export type TFlorentineConfig = z.infer<typeof FlorentineConfigSchema>;
+export type TFlorentineRequestConfig = z.infer<
+  typeof FlorentineRequestConfigSchema
+>;
 export type TFlorentineRequestBody = z.infer<
   typeof FlorentineRequestBodySchema
 >;
@@ -250,3 +272,6 @@ export type IUserCollectionStructure = z.infer<
   typeof IUserCollectionStructureSchema
 >;
 export type ICollectionSummary = z.infer<typeof ICollectionSummarySchema>;
+export type TArgsConfig = z.infer<typeof ArgsConfigSchema>;
+export type TEnvConfig = z.infer<typeof EnvConfigSchema>;
+export type TFlorentineConfig = z.infer<typeof FlorentineConfigSchema>;
