@@ -47,7 +47,7 @@ export class FlorentineServer {
     };
     const serverConfig = McpServerConfigSchema.parse({
       name: 'florentine',
-      version: '0.1.5'
+      version: '0.2.0'
     });
     this.server = new McpServer(serverConfig);
   }
