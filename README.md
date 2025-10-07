@@ -1,18 +1,18 @@
 # Florentine.ai MCP Server - Talk to your MongoDB data
 
-The Florentine.ai Model Context Protocol (MCP) Sserver lets you integrate **natural language querying for your MongoDB data** directly into your custom AI Agent or AI Desktop App.
+The Florentine.ai Model Context Protocol (MCP) Server lets you integrate **natural language querying for your MongoDB data** directly into your custom AI Agent or AI Desktop App.
 
 Questions are forwarded by the AI Agent to the MCP Server, transformed into MongoDB aggregations and the **aggregation results are returned to the agent** for further processing.
 
 Also has a couple of **extra features** under the hood, e.g.:
 
 - **Secure data separation** for multi-tenant usage
+- **Automated schema exploration**
 - **Semantic vector search/RAG support** with automated embedding creation
 - **Advanced lookup support**
 - **Exclusion of keys**
 
-> [!NOTE]
-> If you are looking for our API you can [find it here](https://github.com/florentine-ai/api).
+> **Note:** If you are looking for our API you can [find it here](https://github.com/florentine-ai/api).
 
 ## Contents
 
@@ -126,8 +126,7 @@ If you prefer not to store the key in your Florentine.ai account or want to use 
 | `LLM_SERVICE` | Specifies the LLM provider to use.         | `openai`,`google`,`anthropic` or `deepseek` |
 | `LLM_KEY`     | Your API key for the provided LLM service. | A valid API key string                      |
 
-> [!NOTE]
-> If you provide a `LLM_KEY` inside the env variables of the MCP server config, it will override any key stored in your account.
+> **Note:** If you provide a `LLM_KEY` inside the env variables of the MCP server config, it will override any key stored in your account.
 
 ## Integration Modes
 
@@ -264,8 +263,7 @@ const mcpSetupConfig = new StdioClientTransport({
 await mcpClient.connect(mcpSetupConfig);
 ```
 
-> [!NOTE]
-> You may use `env` variables in `dynamic` mode as well. However if you specify parameters dynamically these will overwrite existing `env` values for the parameters.
+> **Note:** You may use `env` variables in `dynamic` mode as well. However if you specify parameters dynamically these will overwrite existing `env` values for the parameters.
 
 Next, we save the original `callTool` function to a variable:
 
@@ -308,7 +306,7 @@ const result = await mcpClient.callTool({
 });
 ```
 
-> [!IMPORTANT]
+> **IMPORTANT:**
 > Make sure that you never use dynamic mode without overwriting `florentine_ask` implementation.
 > If you do not overwrite it your client/agent will directly use the mcp server-side implementation of the `florentine_ask` tool with all additional parameters.
 > So the client/agent will decide on its own what values to fill in for `returnTypes`, `requiredInputs` etc.
@@ -441,8 +439,7 @@ Based on the type of the values for the key you have different options on what y
 
 ### Usage Examples
 
-> [!NOTE]
-> We will only provide examples as tool parameter input. For `env` implementation you just change the key name to `REQUIRED_INPUTS` and stringify the json.
+> **Note:** We will only provide examples as tool parameter input. For `env` implementation you just change the key name to `REQUIRED_INPUTS` and stringify the json.
 
 **Example type:** `String`
 
