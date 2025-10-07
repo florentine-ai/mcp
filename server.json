@@ -1,5 +1,5 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "io.github.florentine-ai/mcp",
   "description": "MCP server for Florentine.ai - Natural language to MongoDB aggregations",
   "status": "active",
@@ -10,86 +10,86 @@
   "version": "0.2.1",
   "packages": [
     {
-      "registry_type": "npm",
-      "registry_base_url": "https://registry.npmjs.org",
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@florentine-ai/mcp",
       "version": "0.2.1",
-      "runtime_hint": "npx",
+      "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
       },
-      "runtime_arguments": [
+      "runtimeArguments": [
         {
           "type": "named",
           "name": "-y",
           "value": "@florentine-ai/mcp@latest",
-          "is_required": true
+          "isRequired": true
         }
       ],
-      "package_arguments": [
+      "packageArguments": [
         {
           "type": "named",
           "name": "--mode",
           "description": "The mode to run the MCP server in ('static' or 'dynamic')",
           "value": "static",
-          "is_required": true
+          "isRequired": true
         },
         {
           "type": "named",
           "name": "--debug",
           "description": "Set to true to enable debug logging",
           "format": "boolean",
-          "is_required": false
+          "isRequired": false
         },
         {
           "type": "named",
           "name": "--logpath",
           "description": "The path to the log file, must be provided if debug is true",
           "format": "filepath",
-          "is_required": false
+          "isRequired": false
         }
       ],
-      "environment_variables": [
+      "environmentVariables": [
         {
           "name": "FLORENTINE_TOKEN",
           "description": "Your Florentine.ai API key, get it from https://florentine.ai/dashboard",
           "format": "string",
-          "is_required": true,
-          "is_secret": true
+          "isRequired": true,
+          "isSecret": true
         },
         {
           "name": "LLM_SERVICE",
           "description": "The LLM service to use, one of 'openai', 'anthropic', 'google' or 'deepseek' (must only be provided if you did not set it in your Florentine.ai account)",
           "format": "string",
-          "is_required": false,
+          "isRequired": false,
           "is_secret": false
         },
         {
           "name": "LLM_KEY",
           "description": "Your API key for the LLM service (must only be provided if you did not set it in your Florentine.ai account)",
           "format": "string",
-          "is_required": false,
-          "is_secret": true
+          "isRequired": false,
+          "isSecret": true
         },
         {
           "name": "SESSION_ID",
           "description": "Session ID for maintaining server-side context across requests",
           "format": "string",
-          "is_required": false
+          "isRequired": false
         },
         {
           "name": "RETURN_TYPES",
           "description": "Stringified JSON array of return types for the response",
           "format": "string",
-          "is_required": false,
-          "is_secret": false
+          "isRequired": false,
+          "isSecret": false
         },
         {
           "name": "REQUIRED_INPUTS",
           "description": "Stringified JSON array of values for required inputs keys",
           "format": "string",
-          "is_required": false,
-          "is_secret": false
+          "isRequired": false,
+          "isSecret": false
         }
       ]
     }
