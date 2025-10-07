@@ -1,0 +1,26 @@
+{
+  "name": "@florentine-ai/mcp-examples",
+  "version": "1.0.0",
+  "homepage": "https://florentine.ai",
+  "description": "Usage examples for Florentine.ai MCP server",
+  "type": "module",
+  "author": "Jens Lübberstedt <jens@florentine.ai>",
+  "license": "MIT",
+  "scripts": {
+    "dynamicAsk:backend": "tsx dynamicAsk/index.ts",
+    "dynamicAsk:frontend": "npx live-server dynamicAsk --port=8080 --proxy=/api:http://localhost:3000/api",
+    "dynamicAsk": "npm-run-all --parallel dynamicAsk:backend dynamicAsk:frontend"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "tsx": "^4.20.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "serve": "^14.2.1"
+  }
+}

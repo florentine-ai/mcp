@@ -1,0 +1,302 @@
+[
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-01T00:00:00.000Z" },
+    "revenue": 2341
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-02T00:00:00.000Z" },
+    "revenue": 3127
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-03T00:00:00.000Z" },
+    "revenue": 1854
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-04T00:00:00.000Z" },
+    "revenue": 2976
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-05T00:00:00.000Z" },
+    "revenue": 3542
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-06T00:00:00.000Z" },
+    "revenue": 1623
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-07T00:00:00.000Z" },
+    "revenue": 2789
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-08T00:00:00.000Z" },
+    "revenue": 3215
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-09T00:00:00.000Z" },
+    "revenue": 2134
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-10T00:00:00.000Z" },
+    "revenue": 3687
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-11T00:00:00.000Z" },
+    "revenue": 1945
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-12T00:00:00.000Z" },
+    "revenue": 2567
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-13T00:00:00.000Z" },
+    "revenue": 3421
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-14T00:00:00.000Z" },
+    "revenue": 2098
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-15T00:00:00.000Z" },
+    "revenue": 3854
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-16T00:00:00.000Z" },
+    "revenue": 1732
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-17T00:00:00.000Z" },
+    "revenue": 2915
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-18T00:00:00.000Z" },
+    "revenue": 3298
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-19T00:00:00.000Z" },
+    "revenue": 2176
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-20T00:00:00.000Z" },
+    "revenue": 3765
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-21T00:00:00.000Z" },
+    "revenue": 1891
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-22T00:00:00.000Z" },
+    "revenue": 2643
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-23T00:00:00.000Z" },
+    "revenue": 3512
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-24T00:00:00.000Z" },
+    "revenue": 2287
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-25T00:00:00.000Z" },
+    "revenue": 3934
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-26T00:00:00.000Z" },
+    "revenue": 1567
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-27T00:00:00.000Z" },
+    "revenue": 2821
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-28T00:00:00.000Z" },
+    "revenue": 3176
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-29T00:00:00.000Z" },
+    "revenue": 2453
+  },
+  {
+    "userId": { "$oid": "66d4a8f3c9e1b2a3d4e5f601" },
+    "date": { "$date": "2025-09-30T00:00:00.000Z" },
+    "revenue": 3698
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-01T00:00:00.000Z" },
+    "revenue": 2756
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-02T00:00:00.000Z" },
+    "revenue": 1892
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-03T00:00:00.000Z" },
+    "revenue": 3421
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-04T00:00:00.000Z" },
+    "revenue": 2134
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-05T00:00:00.000Z" },
+    "revenue": 3789
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-06T00:00:00.000Z" },
+    "revenue": 1645
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-07T00:00:00.000Z" },
+    "revenue": 2987
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-08T00:00:00.000Z" },
+    "revenue": 3254
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-09T00:00:00.000Z" },
+    "revenue": 2412
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-10T00:00:00.000Z" },
+    "revenue": 3621
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-11T00:00:00.000Z" },
+    "revenue": 1778
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-12T00:00:00.000Z" },
+    "revenue": 2893
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-13T00:00:00.000Z" },
+    "revenue": 3367
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-14T00:00:00.000Z" },
+    "revenue": 2156
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-15T00:00:00.000Z" },
+    "revenue": 3912
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-16T00:00:00.000Z" },
+    "revenue": 1534
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-17T00:00:00.000Z" },
+    "revenue": 2745
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-18T00:00:00.000Z" },
+    "revenue": 3489
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-19T00:00:00.000Z" },
+    "revenue": 2267
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-20T00:00:00.000Z" },
+    "revenue": 3876
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-21T00:00:00.000Z" },
+    "revenue": 1923
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-22T00:00:00.000Z" },
+    "revenue": 2678
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-23T00:00:00.000Z" },
+    "revenue": 3543
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-24T00:00:00.000Z" },
+    "revenue": 2398
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-25T00:00:00.000Z" },
+    "revenue": 3754
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-26T00:00:00.000Z" },
+    "revenue": 1812
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-27T00:00:00.000Z" },
+    "revenue": 2934
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-28T00:00:00.000Z" },
+    "revenue": 3287
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-29T00:00:00.000Z" },
+    "revenue": 2521
+  },
+  {
+    "userId": { "$oid": "507f1f77bcf86cd799439011" },
+    "date": { "$date": "2025-09-30T00:00:00.000Z" },
+    "revenue": 3645
+  }
+]
