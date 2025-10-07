@@ -1,6 +1,6 @@
 {
   "name": "@florentine-ai/mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://florentine.ai",
   "description": "MCP server for Florentine.ai - Natural language to MongoDB aggregations",
   "type": "module",
