@@ -29,7 +29,7 @@ app.use(express.json());
 // Create the MCP client instance
 const mcpClient = new Client({
   name: 'florentine',
-  version: '0.2.0'
+  version: '0.2.1'
 });
 
 // Define MCP setup configuration

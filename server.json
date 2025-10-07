@@ -7,13 +7,13 @@
     "url": "https://github.com/florentine-ai/mcp",
     "source": "github"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packages": [
     {
       "registry_type": "npm",
       "registry_base_url": "https://registry.npmjs.org",
       "identifier": "@florentine-ai/mcp",
-      "version": "0.1.4",
+      "version": "0.2.1",
       "runtime_hint": "npx",
       "transport": {
         "type": "stdio"
